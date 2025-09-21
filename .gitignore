@@ -1,0 +1,6 @@
+*.o
+*.out
+*dSYM/
+.env*
+ccidr
+bin/
