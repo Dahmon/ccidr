@@ -6,6 +6,9 @@
 // 3 * 4 for each segment, 3 periods, and a null terminator
 #define MAX_IP_LEN 16
 
+#define MIN(a, b) ((a) < (b) ? (a) : (b))
+#define MAX(a, b) ((a) > (b) ? (a) : (b))
+
 typedef int IP[4];
 
 typedef struct Config {
@@ -15,6 +18,7 @@ typedef struct Config {
 
 typedef struct Cidr {
   IP base_ip;
+  IP mask;
   int range;
   char *broadcast[MAX_IP_LEN];
   char *first_ip[MAX_IP_LEN];
@@ -24,5 +28,6 @@ typedef struct Cidr {
 
 Config *parse_args(int argc, char *argv[]);
 int parse_ip(char *str, Config *config);
+void get_base_ip(Config *config, IP *ip);
 
 #endif

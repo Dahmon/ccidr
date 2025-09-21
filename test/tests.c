@@ -2,14 +2,21 @@
 #include <stdio.h>
 
 void test_args();
+void test_base_ip();
 
 CU_TestInfo args_tests[] = {
     {"test args", test_args},
     CU_TEST_INFO_NULL,
 };
 
+CU_TestInfo mask_tests[] = {
+    {"test base ip", test_base_ip},
+    CU_TEST_INFO_NULL,
+};
+
 CU_SuiteInfo suites[] = {
     {"args", NULL, NULL, NULL, NULL, args_tests },
+    {"mask", NULL, NULL, NULL, NULL, mask_tests },
     CU_SUITE_INFO_NULL,
 };
 
