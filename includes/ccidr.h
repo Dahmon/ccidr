@@ -3,8 +3,6 @@
 
 #define MIN_CIDR_LEN 9  // 1.1.1.1/1
 #define MAX_CIDR_LEN 18 // 255.255.255.255/32
-// 3 * 4 for each segment, 3 periods, and a null terminator
-#define MAX_IP_LEN 16
 
 #define MIN(a, b) ((a) < (b) ? (a) : (b))
 #define MAX(a, b) ((a) > (b) ? (a) : (b))
@@ -17,13 +15,15 @@ typedef struct Config {
 } Config;
 
 typedef struct Cidr {
+  IP ip;
+  int range;
+
+  int ip_count;
   IP base_ip;
   IP mask;
-  int range;
-  char *broadcast[MAX_IP_LEN];
-  char *first_ip[MAX_IP_LEN];
-  char *last_ip[MAX_IP_LEN];
-  int ip_count;
+  IP broadcast;
+  IP first_ip;
+  IP last_ip;
 } Cidr;
 
 Config *parse_args(int argc, char *argv[]);
